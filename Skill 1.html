@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<script type = "text/javascript">
+//Loops : For Loop
+console.log("Loops : For Loop");
+	for (let i = 0; i < 5; i++){
+	console.log(i);
+	} 
+
+//Loops: While Loop
+console.log("Loops: While Loop");
+	var j = 0;
+	
+	while(j < 3){
+	console.log(j);
+	j++;
+}
+
+//Loops: Do While
+console.log("Loops: Do While");
+	do {
+	console.log("This will print out once because I used a Do While Loop instead of a While Loop");
+}
+	while(3  == 4);
+		
+//Conditional Statements
+console.log("True Conditional Statement:");
+if (2 + 2 == 4)
+{
+	console.log("2 + 2 = 4");
+}
+console.log("False Conditional Statement:");
+if (2 + 2 != 3){
+console.log("2 + 2 != 3");
+}
+//Switch Case
+console.log("Switch Case Statements");
+var country = "Brazil";
+
+//What will be printed?
+
+switch(country){
+case "Brazil":
+console.log("The capital is Brasilia");
+break;
+
+case "Argentina" :
+console.log("The Capital is Buenos Aires");
+break;
+
+case "USA":
+console.log("The Capital is Washington DC");
+break;
+}
+
+
+
+//This will stop at 5 because of the break statement
+for (var i = 0; i < 20 ;i++){
+console.log(i);
+if (i == 5){
+  break;
+}
+}
+
+//Function without parameters
+
+function noParam(){
+console.log("noParam has no parameters");
+
+}
+var param1 =  1;
+var param2 = 2;
+
+function addNumbers(number1,number2){
+var answer =  number1 + number2;
+return answer;
+}
+
+console.log("When I plug param1 and param2 into addNumbers I get: " + addNumbers(param1,param2));
+
+//Arrays
+console.log("This is my array:");
+
+var array = [1, 56, 45, 98, 34, 30, 12, 8];
+
+//Printing the array using a for statement
+for (var i = 0; i < array.length; i ++){
+console.log(array[i]);
+}
+
+		
+//Associative Array 
+		var capitals = {
+
+"USA" : "Washington DC",
+"Haiti" : "Port Au Prince",
+"Brazil" : "Brasilia",
+"Argentina" : "Buenos Aires", 
+"Ghana": "Accra"
+};
+
+function findBrazilandUSA(capitals){
+var main = document.getElementById('main');
+console.log(main);
+main.innerHTML = 
+//1st Way
+"The Capital of the USA is : "+ capitals.USA + '<br> <br>' +
+
+
+//2nd Way
+"The Capital of Brazil is : "+ capitals['Brazil'] ;
+}
+
+
+</script>
+	</head>
+
+	<body onload = "findBrazilandUSA(capitals)">
+		<div id  ="main"> </div>
+	</body>
+
+
+</html>

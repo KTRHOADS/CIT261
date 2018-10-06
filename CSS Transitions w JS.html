@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+#myDiv{
+	transition: height, width, background, 2s;
+    height: 300px;
+    width: 200px;
+    margin: 1em;
+}
+
+button{
+margin: .5em;
+}
+</style>
+<body>
+<div id = 'myDiv'></div>
+
+<button type="button" onclick="fadeIn()">Fade In</button>
+<button type = "button" onclick="fadeOut()"> Fade Out </button>
+<button type = "button" onclick="shrink()"> Shrink </button>
+<button type = "button" onclick="grow()"> Grow </button>
+
+<script>
+function fadeIn() {
+	var div = document.getElementById('myDiv');
+    div.style.background = 'red';
+}
+
+function fadeOut() {
+	var div = document.getElementById('myDiv');
+	div.style.background = 'white';
+}
+
+function grow(){
+var div = document.getElementById('myDiv');
+div.style.width = '500px';
+div.style.height = '200px';
+}
+
+function shrink(){
+var div = document.getElementById('myDiv');
+div.style.width = '100px';
+div.style.height = '50px';
+}
+</script>
+
+</body>
+</html>
