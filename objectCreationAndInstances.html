@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		
+	</head>
+
+	<body>
+		<div id  ="todd"> </div>
+		<div id = "bob"></div>
+		<div id = "denise"> </div>
+	</body>
+	
+	<script>
+		//Hard Coded Object Creation
+		
+		var toddCar =  {
+	//Property Name and Property Value
+		color : "Fire-Engine Red",
+		year: 2004,
+		make: "VolksWagen",
+		model: "New Beetle GS"
+		};
+		document.getElementById('todd').innerHTML = "Todd Drives a :<br>" +
+	    toddCar.year + "<br>" +
+		toddCar.color + "<br>" +
+		toddCar.make + "<br>" +
+		toddCar.model + "<br>";
+		
+		//Creation using a Constructor Function
+		function Vehicle(owner,make,model, year, color) {
+		  
+		this.make = make;
+		this.model = model;
+		this.year = year;
+		this.color = color;
+		this.owner = owner;
+		
+		 
+		this.showVehicle = function(){
+		 
+		  
+		  var carInfo =
+		   "<br>" + this.owner +" Drives a : <br>" +
+		   this.year + '<br>' +
+		   this.color + '<br>' +
+		   this.make + '<br>' +
+		   this.model;
+		   return carInfo;
+		 
+		  
+		 }
+		 }
+		 
+ 
+		// Instance of a Vehicle        //Parameters/Properties
+		var truck = new Vehicle("Bob","Cheverolet", "Silverado", 2015, "White" );
+	document.getElementById('bob').innerHTML = 
+		 truck.showVehicle();
+		 
+  
+
+
+		 
+		 
+		 //Other Instance                //Parameters/Properties
+		 var van = new Vehicle("Denise", "Dodge", "Caravan", 2012, "Midnight Blue");
+		 document.getElementById('denise').innerHTML = 
+		 van.showVehicle();
+		 
+		 var stringified = JSON.stringify(van);
+		 
+		console.log(stringified);
+		
+		console.log(JSON.parse(stringified));
+		
+
+
+</html>
