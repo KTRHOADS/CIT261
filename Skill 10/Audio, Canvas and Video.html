@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<style>
+	video {
+	width: 300px;
+	height: auto;
+	position: absolute;
+	bottom:0;
+	}
+	
+	
+	
+</style>
+
+<script>
+
+
+function setup(){ 
+var canvas =  document.createElement('canvas');
+canvas.width = 600;
+canvas.height = 600;
+canvas.background = 'black';
+document.body.appendChild(canvas);
+
+}
+
+function draw(){
+background(51);
+}
+
+</script>
+
+<body onload = "setup()" onload = "draw()">
+<h1>
+Video, Audio, Canvas
+</h1>
+<video src="test.mp4" poster="test.jpg" controls></video>
+
+</body>
+
+</html>
