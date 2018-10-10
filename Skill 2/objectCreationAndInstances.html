@@ -67,11 +67,13 @@
 		 var van = new Vehicle("Denise", "Dodge", "Caravan", 2012, "Midnight Blue");
 		 document.getElementById('denise').innerHTML = 
 		 van.showVehicle();
-		 
+               
+		//The Object is Converted to a String 
 		 var stringified = JSON.stringify(van);
 		 
 		console.log(stringified);
-		
+                
+		//The String is Converted to a JS Object
 		console.log(JSON.parse(stringified));
 		
 
