@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<style>
+
+#myDiv {
+width: 300px;
+height: 200px;
+display: flex;
+justify-content: center;
+
+}
+ button{
+ height: 3em;
+ margin: 1em;
+ 
+ }
+
+</style>
+<script>
+
+function storageAvailable(type) {
+     
+        var storage = window[type],
+            x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+
+	function setColor(color){
+    window['localStorage'].setItem('color', color);
+	getColor();
+    
+    }
+    
+  function  getColor(){
+  
+    if (!window['localStorage'].getItem('color')) {
+    alert('There is no color set');
+    }
+    
+    else {
+    var color = window['localStorage'].getItem('color');
+    var div = document.getElementById('myDiv');
+    div.style.backgroundColor = color;
+   
+    }
+    
+    }
+
+function saveMyCar(){
+var make = document.getElementById('inputMake').value;
+var year = document.getElementById('inputYear').value;
+var model = document.getElementById('inputModel').value;
+
+var car = {make: make, model: model, year: year};
+var myCar = JSON.stringify(car);
+window['localStorage'].setItem('myCar', myCar);
+document.getElementById('objectContainer').innerHTML ="Car Saved!";
+}
+
+function showMyCar (){
+if (window['localStorage'].getItem('myCar')){
+var car = window['localStorage'].getItem('myCar');
+var myCar = JSON.parse(car);
+myCar.make;
+document.getElementById('objectContainer').innerHTML = myCar.make + '<br>' +
+                                                       myCar.model + '<br>' +      
+													   myCar.year + '<br>' ;
+}                 
+
+else {
+document.getElementById('objectContainer').innerHTML = "You have not created a car yet.";
+}
+}
+
+
+
+
+    
+    
+function storeArray(){
+	myArray = 6;
+	window['localStorage'].setItem('array', myArray);
+	console.log(window['localStorage'].getItem('array'));
+	}
+    
+    function storeAssociativeArray(){
+	var getAA = window['localStorage'].getItem('aa');
+	var aa ={};
+	 aa["make"] = "Ford";
+	 aa['model']= "Mustang";
+	 
+	 window['localStorage'].setItem('aa', JSON.stringify(aa));
+	 console.log(getAA);
+	 console.log(JSON.parse(getAA));
+	 console.log(JSON.parse(getAA)['make']);
+	
+	}
+
+
+    </script>
+
+<body onload = "storeArray(), getColor(), storeAssociativeArray()">
+<div  id = "myDiv">
+<button type ="button" onclick = "setColor('green')">Green</button>
+<button type = "button" onclick = "setColor('red')">Red</button>
+</div>
+
+<div id = "objectContainer"></div>
+<button type = "button" onclick = "showMyCar()">Show Me My Car</button>
+
+<div id = "inputArea">
+
+<form>
+<h2>What kind of car do you drive?</h2> <br> 
+Make:<br>
+<input id = "inputMake" type = "text"> <br>
+Model:<br>
+<input id = "inputModel" type = "text"> <br>
+Year:<br>
+<input id = "inputYear" type = "text"> <br>
+<button type = "button" onclick = "saveMyCar()" >Save My Car</button>
+</form>
+</div>
+</body>
+
+</html>

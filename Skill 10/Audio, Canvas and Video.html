@@ -7,35 +7,63 @@
 	position: absolute;
 	bottom:0;
 	}
-	
+	canvas{width: 500px;
+	height: 400px;
+	background-color : pink;
+	border:solid black 1px;
+	}
 	
 	
 </style>
 
-<script>
 
-
-function setup(){ 
-var canvas =  document.createElement('canvas');
-canvas.width = 600;
-canvas.height = 600;
-canvas.background = 'black';
-document.body.appendChild(canvas);
-
-}
-
-function draw(){
-background(51);
-}
-
-</script>
-
-<body onload = "setup()" onload = "draw()">
+<body>
 <h1>
 Video, Audio, Canvas
 </h1>
 <video src="test.mp4" poster="test.jpg" controls></video>
-
+<canvas id = "myCanvas"></canvas>
 </body>
+<script>
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+var x = canvas.width/2;
+var y = canvas.height-30;
+const height = canvas.height;
+const width = canvas.width;
+var dx = .5;
+var dy = -.5;
+
+function drawBall() {
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, Math.PI*2);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+}
+
+
+function draw(){
+
+ ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBall();
+    x += dx;
+    y += dy;
+	
+}
+
+
+setInterval( draw, 10);
+
+
+
+
+
+
+
+
+
+</script>
 
 </html>
