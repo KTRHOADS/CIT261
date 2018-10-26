@@ -1,0 +1,88 @@
+<!--
+Skill 6 - DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.			
+
+Skill 7 -Manipulating CSS Class Properties Using JavaScript-->
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+			#deleteButton {
+				display: none;
+			}
+			
+			#container {
+				display: flex;
+				justify-content: center;
+			}
+		</style>
+		<script>
+		function start(){
+		
+		var myArticle = document.createElement('article');
+		var blogTitle = document.getElementById('title').value;
+		var h2Title = document.createElement('h2');
+		var post = document.getElementById('blogInput').value;
+		var paragraph = document.createElement('p');
+		h2Title.innerHTML = blogTitle;
+		paragraph.style.color = "red";
+		paragraph.innerHTML = post;
+		myArticle.appendChild(h2Title);
+		h2Title.className = 'title';
+		if (document.getElementsByClassName('title') != null){
+		h2Title.id = document.getElementsByClassName('title').length;
+		}
+		else {
+		h2Title.id = 0;
+		}
+		myArticle.appendChild(paragraph);
+		myArticle.className = "myArticle";
+		document.getElementById('deleteButton').style.display = "block";
+		document.getElementById('myForm').reset();
+		document.body.appendChild(myArticle);
+		
+		}
+		
+		function deleteBlog(){
+		var posts =  document.getElementsByClassName('myArticle');
+		
+		for (var i = 0; i < posts.length; i++){
+		
+		
+		var box = document.createElement('input');
+		box.type = "checkbox";
+		box.class = "check";
+		posts[i].appendChild(box);
+		posts[i].insertBefore(box, document.getElementById(i));
+		}
+		}
+		//var answer = confirm("You are about to delete a post")
+		//if (answer){
+			//var article = document.getElementById('myArticle');
+			//document.body.removeChild(article);
+			//}
+		//else {
+		//return;
+		//}	
+	//}
+		</script>
+	</head>
+	<body>
+		<div id = "container">
+			<form id = "myForm">
+				Blog Title <br>
+					<input type =  "text" id = "title">
+					</input>
+					<br>
+					Post 	
+					<br>
+					<textarea id = "blogInput" width = 1000px height = 400px >
+					</textarea>
+			</form>
+		<br>
+		<button class = "button" type ="button" onclick = "start()" width = "10px"> Post to the Blog</button> <br> 
+		<br>
+		<button class = "button" type = "button" id = "deleteButton" onclick = "deleteBlog()" >Delete Post </button>
+	</div>
+	</body>
+</html>

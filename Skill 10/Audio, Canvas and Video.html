@@ -7,12 +7,17 @@
 	position: absolute;
 	bottom:0;
 	}
-	canvas{width: 500px;
-	height: 400px;
-	background-color : pink;
+	canvas{
+	background-image: url("bg.png");
+	width: 0em;
+	height: 0em;
 	border:solid black 1px;
 	}
 	
+	@keyframes example {
+	from {width: 0em; height: 0em;}
+    to {width: 400px; height:600px;}	
+	}
 	
 </style>
 
@@ -21,48 +26,144 @@
 <h1>
 Video, Audio, Canvas
 </h1>
-<video src="test.mp4" poster="test.jpg" controls></video>
-<canvas id = "myCanvas"></canvas>
+<canvas onkeypress="(event)"id = "myCanvas"></canvas>
+<button onclick = "startGame()">Start Game</button>
+<button onclick = "muteMusic()">Mute</button>
 </body>
 <script>
-
+var timer;
+var gameOverAudio = new Audio('gameOver.wav');
+var audio = new Audio('Zeca Pagodinho - Faixa Amarela.mp3');
+var bird;
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-var x = canvas.width/2;
-var y = canvas.height-30;
 const height = canvas.height;
 const width = canvas.width;
-var dx = .5;
-var dy = -.5;
 
-function drawBall() {
-    ctx.beginPath();
-    ctx.arc(x, y, 20, 0, Math.PI*2);
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
-}
 
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
+function keyDownHandler(e) {
+    if(e.keyCode == 39) {
+        bird.isUp = true;
+    }
+	}
+	
+	function keyUpHandler(e) {
+    if(e.keyCode == 39) {
+        bird.isUp = false;
+    }
+	}
 
 function draw(){
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+bird.update();
+bird.show();
+if (bird.lives<0){
+bird.gameOver();
+}
+ }
 
- ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall();
-    x += dx;
-    y += dy;
+
+
+function startGame() {
+var myCanvas = document.getElementById('myCanvas');
+	myCanvas.style.animationName = "example";
+	myCanvas.style.animationDuration = ".5s";
+	myCanvas.style.animationIterationCount = "1";
+	myCanvas.style.animationFillMode = "forwards";
+	timer = setInterval (draw, 10);
+    bird = new Bird();
+	bird.show();
+	startMusic();
+	
+	
 	
 }
 
+function startMusic(){
+audio.currentTime = 14;
+	audio.play();
+	}
+function muteMusic(){
+audio.pause();
+gameOverAudio.pause();
+}
 
-setInterval( draw, 10);
+function topPipe(){
 
+}
 
+function bottomPipe(x,y){
 
+}
+function Bird(){
+this.isUp = false;
+this.score = 0;
+this.lives = 2;
+this.height = 15;
+this.width = 25;
+    this.gravity = .75;
+    this.velocity = 0;
+	this.x = 64;
+	this.y = document.getElementById('myCanvas').height/4;
+	this.loseLife = function(){
+	this.lives -= 1;
+	this.x = 64;
+	this.y = document.getElementById('myCanvas').height/4;
+	}
+	 this.gameOver = function (){
+ctx.font = "30px Times-New-Roman"; 
+this.gravity = 0;
+this.y = 0; 
+ctx.fillStyle = 'red';
+ctx.fillText("Game Over!", 80,75 );
+audio.pause();
+gameOverAudio.play();
+clearInterval(timer);
 
-
-
-
-
+}
+this.falling = function(){
+this.gravity = .5;
+this.flapState = 0;
+}
+this.moveUp = function(){
+this.flapState = 1;
+this.gravity = - 1; 
+}
+	this.show = function() {
+	this.flapState = 0;
+    this.images = [];
+	this.images[0] = new Image();
+	this.images[1] = new Image();
+    this.images[0].src = "bird.png";
+	this.images[1].src = "bird2.png";
+     
+	this.update = function(){
+		this.y += this.gravity;
+		ctx.drawImage(this.images[this.flapState], 
+        this.x, 
+        this.y,
+        this.width, this.height);
+	}
+		ctx.font = "12px Times-New-Roman";
+		ctx.fillColor = "red";
+		ctx.fillText("Score: " + this.score,10,15);
+		ctx.fillText("Lives:" + this.lives ,230,15);
+		if(bird.isUp){
+		this.moveUp();
+		}
+		else {
+		this.falling();
+		}
+		
+		if (this.y > document.getElementById('myCanvas').height || this.y < 0){
+		this.loseLife();
+	}
+	}
+	
+}
 
 </script>
 
