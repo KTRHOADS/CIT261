@@ -39,7 +39,8 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 const height = canvas.height;
 const width = canvas.width;
-
+var flap = new Audio('flap.mp3');
+var horn = new Audio('horn.wav');
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -60,10 +61,8 @@ function draw(){
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 bird.update();
 bird.show();
-if (bird.lives<0){
-bird.gameOver();
 }
- }
+ 
 
 
 
@@ -73,9 +72,9 @@ var myCanvas = document.getElementById('myCanvas');
 	myCanvas.style.animationDuration = ".5s";
 	myCanvas.style.animationIterationCount = "1";
 	myCanvas.style.animationFillMode = "forwards";
-	timer = setInterval (draw, 10);
     bird = new Bird();
 	bird.show();
+	timer = setInterval (draw, 10);
 	startMusic();
 	
 	
@@ -83,6 +82,7 @@ var myCanvas = document.getElementById('myCanvas');
 }
 
 function startMusic(){
+audio.volume = 0.2;
 audio.currentTime = 14;
 	audio.play();
 	}
@@ -108,7 +108,9 @@ this.width = 25;
     this.velocity = 0;
 	this.x = 64;
 	this.y = document.getElementById('myCanvas').height/4;
+	
 	this.loseLife = function(){
+	horn.play();
 	this.lives -= 1;
 	this.x = 64;
 	this.y = document.getElementById('myCanvas').height/4;
@@ -119,6 +121,7 @@ this.gravity = 0;
 this.y = 0; 
 ctx.fillStyle = 'red';
 ctx.fillText("Game Over!", 80,75 );
+horn.pause();
 audio.pause();
 gameOverAudio.play();
 clearInterval(timer);
@@ -130,7 +133,8 @@ this.flapState = 0;
 }
 this.moveUp = function(){
 this.flapState = 1;
-this.gravity = - 1; 
+this.gravity = - 1;
+ 
 }
 	this.show = function() {
 	this.flapState = 0;
@@ -153,6 +157,7 @@ this.gravity = - 1;
 		ctx.fillText("Lives:" + this.lives ,230,15);
 		if(bird.isUp){
 		this.moveUp();
+		flap.play();
 		}
 		else {
 		this.falling();
@@ -160,6 +165,9 @@ this.gravity = - 1;
 		
 		if (this.y > document.getElementById('myCanvas').height || this.y < 0){
 		this.loseLife();
+	}
+	if (this.lives == - 1 ){
+	this.gameOver();
 	}
 	}
 	
