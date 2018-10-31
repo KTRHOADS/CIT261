@@ -47,7 +47,7 @@ background-color:#FF1493;
 	#start-button{
 	width: 4em;
 	height: 3em;
-	margin: 1em;
+	margin-right: 3em;
 	position: absolute;
 	top :1em; 
 	}
@@ -66,7 +66,7 @@ background-color:#FF1493;
 Video, Audio, Canvas
 </h1>
 <canvas onkeypress="(event)"id = "myCanvas"></canvas>
-<image id = "start-button" src ="button-start-game.png" onclick = "startGame()">
+<image id = "start-button" src ="button-start-game.png" onclick = "startPreGame()">
 <img id = "mute/volume" onclick = "muteMusic()" src = "volume.png" width ="5em" height ="100px"></img>
 <div id="weatherDIV" style = "margin :1em" ></div>
 <p>Where would you like to play?<p>
@@ -84,7 +84,9 @@ Video, Audio, Canvas
   <option value ="tehran,ir">Tehran</option>
   <option value ="miami,us">Miami</option>
   <option value ="porto%20alegre,br">Porto Alegre</option>
+  <option value ="port-au-prince,ht">Port-au-Prince</option>
 </select>
+<button onclick = "pause()" type = "button"> Pause </button>
 </div>
 </body>
 <script>
@@ -101,7 +103,7 @@ const width = canvas.width;
 var flap = new Audio('flap.mp3');
 var horn = new Audio('horn.wav');
 var muted = false;
-
+var isPaused =false;
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -158,6 +160,8 @@ requestFranklin.send();
 	}
 	if (id == 701 || id == 721 || id== 741 ){
 	  canvas.style.backgroundImage = "url('foggy.jpg')";
+	  var ctx = canvas.getContext("2d");
+	  ctx.fillStyle = 'blue';
 	}
 	if (id == 711){
 	  canvas.style.backgroundImage = "url('smoke.jpg')";
@@ -199,6 +203,12 @@ function draw(){
 	}
 
   for (var i = pipes.length - 1; i >= 0; i--){
+  if (isPaused){
+    pipes[i].speed =0;
+	bird.gravity = 0;
+	bird.y = 0;
+  }
+  else{
    pipes[i].show();
    pipes[i].update();
    if (pipes[i].hits(bird)){
@@ -208,7 +218,7 @@ function draw(){
    if (pipes[i].offscreen()){
      pipes.splice(i, 1);
 	 }
-  
+   }
   }
   if (muted){
 audio.volume = 0;
@@ -223,11 +233,17 @@ gameOverAudio.volume = .1;
 flap.volume = 1;
 horn.volume = .1
 }
+if(!isPaused)
 bird.score++;
  }
   
  
- 
+ function startPreGame(){
+ var input = document.createElement('input');
+ var button = document.createElement('button');
+ button.type = 'button';
+ startGame();
+ }
 
 
 
@@ -305,6 +321,15 @@ function Pipe(){
   }
 }
 }
+
+function pause(){
+  if (isPaused){
+   isPaused = false;
+  }
+  else {
+    isPaused = true;
+  }
+}
 function Bird(){
 this.isUp = false;
 this.score = 0;
@@ -334,6 +359,7 @@ ctx.fillStyle = 'red';
 ctx.fillText("Game Over!", 80,75 );
 audio.pause();
 gameOverAudio.play();
+delete Bird();
 }
 
 this.falling = function(){
@@ -377,7 +403,7 @@ this.gravity = - 1;
 		this.falling();
 		this.flapState = 0;
 		}
-		this.score++;
+	
 		
 		if (this.y > document.getElementById('myCanvas').height){
 		this.loseLife();
@@ -388,6 +414,17 @@ this.gravity = - 1;
 	}
 	}
 	
+}
+
+function Player(){
+  this.score = score;
+  this.name = name;
+  this.highScore = highScore;
+  this.saveHighScore = function(){
+    
+	
+	
+  }  
 }
 
 </script>
