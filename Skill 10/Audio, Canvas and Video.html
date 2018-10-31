@@ -311,6 +311,7 @@ this.score = 0;
 this.lives = 2;
 this.height = 15;
 this.width = 25;
+this.flapState =0;
     this.gravity = 1;
     this.velocity = 0;
 	this.x = 64;
@@ -345,12 +346,15 @@ this.gravity = - 1;
  
 }
 	this.show = function() {
-	this.flapState = 0;
     this.images = [];
 	this.images[0] = new Image();
 	this.images[1] = new Image();
     this.images[0].src = "bird.png";
 	this.images[1].src = "bird2.png";
+	ctx.drawImage(this.images[this.flapState], 
+        this.x, 
+        this.y,
+        this.width, this.height);
 	}
      
 	this.update = function(){
