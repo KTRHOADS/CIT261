@@ -1,0 +1,16 @@
+@media only screen and (min-width: 64em){
+	html{
+		max-width: 64em;
+	}
+	#title{
+		margin: 2em;
+	}
+	
+	#titleImage{
+		width: 55em;
+	}
+	
+	#myDiv{
+		width: 90%;
+	}
+}

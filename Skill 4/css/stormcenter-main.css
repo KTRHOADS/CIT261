@@ -1,0 +1,138 @@
+
+@import url('https://fonts.googleapis.com/css?family=Sunflower:300');
+#headerimage{
+	background-color: #C2B280;
+}
+
+html{
+box-sizing: border-box;   
+color:black;
+	background-color:#dbd1b4;
+	position:absolute;
+	max-width:27.5em;
+    padding:.5em;
+	
+}
+ul{
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15em;
+    background-color: #dbd1b4;
+	font-family: 'Pacifico', cursive;
+}
+
+li a {
+    display: grid;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+
+li a:hover {
+    background-color:  #ff5252;
+    color: white;
+}
+
+	
+#Nav{
+	display:none;
+	 max-width: 27em;
+	flex-direction:column;
+	
+}
+
+ul {
+
+list-style-type: none;
+margin: 0;
+padding: 1 em;
+display: flex;
+margin: 1em;
+
+}
+
+li a {
+display: flex;
+color: black;
+text-align: center;
+padding: 8px 9px;
+background-color: #dbd1b4;
+
+}
+
+
+header, nav, main, footer { /* the comma between the selectors means apply the following CSS declarations to all of the listed elements */
+  max-width:25em; 
+                          /* Declare the maximum width and other main element rules to limit the stretch on larger/wider views */
+}
+
+h1, h2{
+	color: #ff5252;
+	font-family: 'Pacifico' , cursive;
+}
+
+.div{
+	display: flex;
+}
+
+.container{
+	
+	display: flex;
+	justify-content: space-between;
+	width: 25em;
+	margin: 2em;
+	flex-direction: column;
+	
+	
+}
+
+label{
+	
+	font-weight:bold;
+	font-family: 'Pacifico', cursive;
+}
+	
+
+
+li a:hover {
+    background-color:  #ff5252;
+    color: white;
+}
+.container{
+	display: flex;
+    padding: 1em;
+    width: 65%;
+	margin-left: 1.25em;
+	margin-top: 2em;
+	align-items:center;
+	border-style: solid;
+	border-color: #ff5252;
+        margin-bottom: 1em;
+	}   
+#Hamburger{
+	width:3em;
+margin: 0em;
+}
+ 
+#header{
+padding-left: 1em;
+}	
+ #headerImg{
+	 width: 95%;
+	 
+	 
+ }	
+
+#thanks{
+color:#ff5252;  
+}
+
+#footer{
+	position: absolute;
+   width:100%;
+   height:10em;   /* Height of the footer */
+   margin-top: 2em;
+margin-bottom: 0em;   
+}

@@ -1,0 +1,65 @@
+@media only screen and (min-width:37.5em ) {
+
+    
+    
+ #Hamburger { 
+ display:none; 
+ }  
+    
+   
+html{   
+		width:37.5em;
+		max-width:37.5em;
+	
+    }
+	
+
+	#footer, #header, nav, main, footer { 
+  max-width:37.5em;
+	}
+ 
+ 
+#Nav{
+	display: inline;
+	top: 0;
+}
+
+#articleTitle{
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0; 
+	margin: .5em;
+	height: .5em;
+}
+
+li{
+	float: left;
+}
+
+li a{
+	display: block;
+	padding: .5em;
+}
+   #galleryDIV {
+	display:grid;
+	margin-bottom: 2em;
+	width:auto;
+	grid-template-columns: auto auto;
+}
+
+.galleryImages{
+	height:15em;
+	max-width: 15em;
+	display: grid;
+	padding: 2em;
+}
+
+#footer{
+ bottom:0;
+ width: 25em;
+}
+}

@@ -1,0 +1,13 @@
+@media only screen and (min-width:64em ) {    
+      
+	 main, nav, footer{
+font-size: 105%;
+
+width: 64em;
+margin-left : 5em;
+}
+
+main{
+font-size: 120%;
+}
+}

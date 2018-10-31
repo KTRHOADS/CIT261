@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Sunflower:300');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+h2, h3{
+	color: #ff5252;
+}
+
+html{
+box-sizing: border-box;   
+color:black;
+	position:absolute;
+	max-width:27.5em;
+    	padding:2em;
+	background-color:#dbd1b4;
+	max-width: 25.7em;
+}
+#Hamburger{
+	width: 3em;
+}
+#myDiv{
+	width:100%;
+	display : flex;
+	flex-direction: row;
+	font-weight: bold;
+	flex-wrap: wrap;
+	margin: 1em;
+	margin-left:.15em;
+	font-family: 'Source Sans Pro', sans-serif;
+	justify-content: end;
+	padding:10px;
+
+}   
+
+#myDiv:nth-child(odd){
+	
+	color: white; 
+	background-color:#dd1b42;
+}
+
+#myDiv:nth-child(even){
+	
+	color: black; 
+	background-color:#3257EF;
+}
+
+#titleImage{
+	width: 100%;
+}
+
+#title{
+	color: #ff5252;
+	font-family: 'Source Sans Pro', sans-serif;
+	margin-top:1em;
+}
+
+#articleTitle{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 150%;
+}
+
+#articleImage{
+width: 20em;
+height: auto;
+
+}

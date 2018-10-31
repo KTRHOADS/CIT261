@@ -1,0 +1,95 @@
+html{
+box-sizing: border-box;   
+color:black;
+	background-color:#dbd1b4;
+	position:absolute;
+	max-width:27.5em;
+    padding:.5em;
+	
+}
+ul{
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15em;
+    background-color: #dbd1b4;
+	font-family: 'Pacifico', cursive;
+}
+
+li a {
+    display: grid;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+
+li a:hover {
+    background-color:  #ff5252;
+    color: white;
+}
+
+	
+#Nav{
+	display:none;
+	 max-width: 27em;
+	flex-direction:column;
+	
+}
+
+ul {
+
+list-style-type: none;
+margin: 0;
+padding: 1 em;
+display: flex;
+margin: 1em;
+
+}
+
+li a {
+display: flex;
+color: black;
+text-align: center;
+padding: 8px 9px;
+background-color: #dbd1b4;
+
+}
+
+
+header, nav, main, footer { /* the comma between the selectors means apply the following CSS declarations to all of the listed elements */
+  max-width:25em; 
+                          /* Declare the maximum width and other main element rules to limit the stretch on larger/wider views */
+}
+
+#Hamburger{
+	width:3em;
+}
+
+h1, h2{
+	color: #ff5252;
+	font-family: 'Pacifico' , cursive;
+}
+
+.galleryImages:hover {box-shadow: 5px 5px 10px black;}
+
+#galleryDIV {
+	width: 100%;
+	display:grid;
+	margin-bottom: 2em;
+	grid-template-columns: auto;
+}
+
+.galleryImages{
+	height:10em;
+    width:20em;
+	display: grid;
+	padding: 2em;
+}
+	
+#footer{
+		bottom:0;
+		width:100%;
+		margin-top: 1em;
+		margin-left: 1em;	
+}

@@ -1,0 +1,11 @@
+@media only screen and (min-width:37.5em ) {
+	
+	#articleImage{
+		width: 33em;
+	}
+#articleTitle{
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+}
+

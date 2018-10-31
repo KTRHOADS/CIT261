@@ -1,0 +1,23 @@
+@media only screen and (min-width:64em ) {
+
+#Nav, header, nav, main, footer { 
+	width: 64em;
+  	max-width:64em;
+  
+                          
+}
+
+#myNav{	
+	width: 100%;
+	height:30em;
+	border:   solid, 3px, black;
+
+}
+
+li a{
+	float: left;
+	font-size: 110%;
+	margin-bottom: 1em;
+	margin-left: .75em;
+}	
+}

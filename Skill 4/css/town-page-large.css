@@ -1,0 +1,60 @@
+@media only screen and (min-width:64em ) {
+
+      
+	
+	html{
+		width:64em;
+		max-width:64em;
+                margin-left: 0em;
+          }
+	
+	#Nav, header, nav, main, footer { 
+  width: 64em;
+  max-width:64em;
+                      
+}
+
+#myNav{	width: 64em;
+	height:30em;
+	border:   solid, 3px, black;
+
+}
+
+li a{
+float: left;
+font-size: 110%;
+margin-bottom: 1em;
+margin-left: .75em;
+}	
+
+
+#articleImage{
+width:70%;
+
+}
+.sliderImages{
+  width:64em;
+ height: 65%;
+
+}
+#title{
+margin-top: 1em;
+}
+
+#headerimage{
+margin-top: 2em;
+margin-left: 1em;
+width:20em;
+height: 50%;
+}
+
+.town-article{
+        font-size: 140%;
+	width: 64em;
+}
+
+#events{
+width: 64em;
+
+}
+}
