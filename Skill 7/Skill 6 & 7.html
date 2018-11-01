@@ -1,0 +1,129 @@
+<!--
+Skill 6 - DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.			
+
+Skill 7 -Manipulating CSS Class Properties Using JavaScript-->
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style>
+		*{margin: 1em;}
+		button{
+		  height: 2em;
+		}
+			#deleteButton {
+				display: none;
+				height: 2em;
+			}
+			
+			#container {
+				display: flex;
+				justify-content: center;
+			}
+		</style>
+		<script>
+		var posts =  document.getElementsByClassName('myArticle');
+		
+		function postBlog(){
+		
+		var myArticle = document.createElement('article');
+		var blogTitle = document.getElementById('title').value;
+		var h2Title = document.createElement('h2');
+		h2Title.style.color = document.getElementById('titleColor').value;
+		var post = document.getElementById('blogInput').value;
+		var paragraph = document.createElement('p');
+		h2Title.innerHTML = blogTitle;
+		paragraph.style.color = document.getElementById('blogColor').value;
+		paragraph.innerHTML = post;
+		myArticle.appendChild(h2Title);
+		h2Title.className = 'title';
+		if (document.getElementsByClassName('title') != null){
+		h2Title.id = document.getElementsByClassName('title').length;
+		}
+		else {
+		h2Title.id = 0;
+		}
+		myArticle.appendChild(paragraph);
+		myArticle.className = "myArticle";
+		document.getElementById('deleteButton').style.display = "block";
+		document.getElementById('myForm').reset();
+		if(post != ""){
+		document.body.appendChild(myArticle);
+		}
+		}
+		
+		function deleteBlog(){
+		
+		
+		for (var i = 0; i < posts.length; i++){
+		
+		
+		var box = document.createElement('input');
+		box.type = "checkbox";
+		box.className = "check";
+		posts[i].appendChild(box);
+		posts[i].insertBefore(box, document.getElementById(i));
+		
+		}
+		if (!document.getElementById('finalDelete') && posts.length != 0){
+		 var button  = document.createElement('img');
+		 button.src = "delete.png"
+		 button.id = 'finalDelete';
+		 button.style.width = "2em";
+		 button.style.width = "2em";
+		 button.setAttribute( "onClick", "finalRemove()" );
+		 document.body.appendChild(button);
+		  }
+		  }
+		  function finalRemove(){
+		var boxes = document.getElementsByClassName('check');	
+		console.log(boxes.length);
+		for (var i = 0; i < boxes.length; i++){
+		console.log (boxes[i].value);
+		  if (boxes[i].value === 'on'){
+		    document.body.removeChild(posts[i]);
+		}
+		}
+		
+		
+		}
+	
+	
+		</script>
+	</head>
+	<body>
+		<div id = "container">
+			<form id = "myForm">
+				Blog Title <br>
+					<input type =  "text" id = "title">
+					</input>
+					<br>
+					Title Color <br>
+					<select id = "titleColor">
+					  <option value = 'red'>Red</option>
+					  <option value = 'pink'>Pink</option>
+					  <option value = 'green'>Green</option>
+					  <option value = 'orange'>Orange</option>
+					</select>
+					<br>
+					Post 	
+					<br>
+					<textarea id = "blogInput" width = 1000px height = 400px >
+					</textarea>
+					<br>
+					Blog Body Color
+					<br>
+					<select type =  "" id = "blogColor">
+					  <option value = 'red'>Red</option>
+					  <option value = 'pink'>Pink</option>
+					  <option value = 'green'>Green</option>
+					  <option value = 'orange'>Orange</option>
+					</select>
+			</form>
+		<br>
+		<button class = "button" type ="button" onclick = "postBlog()" width = "10px"> Post to the Blog</button> <br> 
+		<br>
+		<button class = "button" type = "button" id = "deleteButton" onclick = "deleteBlog()" >Delete Post </button>
+	</div>
+	</body>
+</html>
