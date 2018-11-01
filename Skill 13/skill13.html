@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+  function normalWalk(){
+    document.getElementById('canvas').style.animationName = 'example';
+	document.getElementById('canvas').style.animationDuration = '1.25s';
+  }
+  
+   function superWalk(){
+    document.getElementById('canvas').style.animationName = 'example';
+	document.getElementById('canvas').style.animationDuration = '.1s';
+  }
+</script>
 <style>
-div {
-    width: 100px;
-    height: 100px;
-    background-image: url("ego.jpg");
-    animation-name: example;
-    animation-duration: 10s;
-	animation-iteration-count: infinite;
-}
-
-
+canvas {
+     height: 256px;
+  width: 256px;
+  background-image: url('walking.png');
+  animation-iteration-count: infinite;
+  }
 @keyframes example {
-    10% {width:10%; height: 10%;}
-	20% {width:20%; height: 20%;}
-	30% {width:30%; height: 30%;}
-	40% {width:40%; height: 40%;}
-	50% {width:50%; height: 50%;}
-	60% {width:60%; height: 60%;}
-	70% {width:70%; height: 70%;}
-	80% {width:80%; height: 80%;}
-	90% {width:90%; height: 90%;} 
-  100%{width:100%; height: 100%;}
+    0%   {background-position : 0px 0px;}
+    25%  {background-position :-256px 0px;}
+    50%  {background-position:-512px 0px ;}
+    75% {background-position: -768px 0px;}
+	100% {background-position: -1024px 0px;}
 }
+
 </style>
 </head>
 <body>
 
-<div></div>
-
+<canvas id = "canvas"></canvas>
+<button type = 'button' onclick ="normalWalk()">Normal Walk</button>
+<button type = 'button' onclick ="superWalk()">Super Walk</button>
 </body>
+
 </html>
