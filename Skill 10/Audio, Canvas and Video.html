@@ -300,7 +300,7 @@ function Pipe(){
   this.top = Math.floor((Math.random() * height/3) - 60);
   this.bottom = Math.floor((Math.random() * height/3) + 90);
   this.x = document.getElementById("myCanvas").width;
-  this.w = 50;
+  this.w = 65;
   this.show = function(){
     this.topPipe = new Image();
     this.bottomPipe = new Image();
@@ -342,8 +342,8 @@ function Bird(){
 this.isUp = false;
 this.score = 0;
 this.lives = 2;
-this.height = 15;
-this.width = 25;
+this.height = 20;
+this.width = 30;
 this.flapState =0;
     this.gravity = 1;
     this.velocity = 0;
