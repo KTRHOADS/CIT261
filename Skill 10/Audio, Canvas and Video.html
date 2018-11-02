@@ -4,13 +4,14 @@
 
 html{
 background-color:#FF1493; 
+width: 27.5em;
 }
 	canvas{
 	background-image: url("blue-sky.jpg");
 	width: 0em;
 	height: 0em;
 	border:solid black 1px;
-	margin: 10em;
+	margin-left: 5em;
 	background-repeat: no-repeat;
 	background-size: 25em 30em ;
 	
@@ -26,7 +27,7 @@ background-color:#FF1493;
 	}
 	@keyframes example {
 	from {width: 0em; height: 0em;}
-    to {width: 25em; height:30em;}	
+    to {width: 25em; height:27em;}	
 	}
 	
 	#container{
@@ -53,8 +54,8 @@ background-color:#FF1493;
 	}
 	
 	#weatherSelectBox{
-	  width: 10em;
-	  height: 3em;
+	  width: 5em;
+	  height: 2em;
 	  margin: 1em;
 	}
 </style>
@@ -95,6 +96,11 @@ function startup() {
   el.addEventListener("touchstart", handleStart, false);
   el.addEventListener("touchend", handleEnd, false);
   console.log("initialized.");
+  var myCanvas = document.getElementById('myCanvas');
+	myCanvas.style.animationName = "example";
+	myCanvas.style.animationDuration = ".5s";
+	myCanvas.style.animationIterationCount = "1";
+	myCanvas.style.animationFillMode = "forwards";
 }
 
 var frameCount = 0;
@@ -255,11 +261,6 @@ bird.score++;
 
 function startGame() {
 getBackground();
-var myCanvas = document.getElementById('myCanvas');
-	myCanvas.style.animationName = "example";
-	myCanvas.style.animationDuration = ".5s";
-	myCanvas.style.animationIterationCount = "1";
-	myCanvas.style.animationFillMode = "forwards";
     bird = new Bird();
 	bird.show();
 	timer = setInterval (draw, 10);
