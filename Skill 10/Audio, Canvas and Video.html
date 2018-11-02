@@ -60,7 +60,7 @@ background-color:#FF1493;
 </style>
 
 
-<body onload ="">
+<body onload ="startup()">
 <div id ="container">
 <h1>
 Video, Audio, Canvas
@@ -90,6 +90,13 @@ Video, Audio, Canvas
 </div>
 </body>
 <script>
+function startup() {
+  var el = document.getElementById("myCanvas");
+  el.addEventListener("touchstart", handleStart, false);
+  el.addEventListener("touchend", handleEnd, false);
+  console.log("initialized.");
+}
+
 var frameCount = 0;
 var pipes =[];
 var timer;
@@ -105,8 +112,8 @@ var horn = new Audio('horn.wav');
 var muted = false;
 var isPaused =false;
 
-document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
+//document.addEventListener("keydown", keyDownHandler, false);
+//document.addEventListener("keyup", keyUpHandler, false);
 
 function getBackground(){
     var city = document.getElementById('weatherSelectBox').value;
@@ -181,17 +188,16 @@ requestFranklin.send();
 }
 }
 
-function keyDownHandler(e) {
-    if(e.keyCode == 39) {
-        bird.isUp = true;
-    }
+function handleStart(e) {
+    e.preventDefault();
+    bird.isUp = true;
+    console.log("touchstart.");
 	}
 	
-	function keyUpHandler(e) {
-    if(e.keyCode == 39) {
+	function handleEnd(e) {
+        e.preventDefault();
         bird.isUp = false;
-    }
-	}
+       }
 
 function draw(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
