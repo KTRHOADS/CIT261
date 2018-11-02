@@ -12,7 +12,7 @@ background-color:#FF1493;
 	border:solid black 1px;
 	margin: 10em;
 	background-repeat: no-repeat;
-	background-size: 500px 700px ;
+	background-size: 25em 30em ;
 	
 	
 	}
@@ -26,7 +26,7 @@ background-color:#FF1493;
 	}
 	@keyframes example {
 	from {width: 0em; height: 0em;}
-    to {width: 500px; height:700px;}	
+    to {width: 25em; height:30em;}	
 	}
 	
 	#container{
@@ -112,8 +112,8 @@ var horn = new Audio('horn.wav');
 var muted = false;
 var isPaused =false;
 
-//document.addEventListener("keydown", keyDownHandler, false);
-//document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
 
 function getBackground(){
     var city = document.getElementById('weatherSelectBox').value;
