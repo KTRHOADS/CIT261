@@ -3,18 +3,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 
-html{
-background-color:#FF1493; 
-width: 35em;
+html, body{
+    background-color:#FF1493; 
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
 	canvas{
 	background-image: url("blue-sky.jpg");
-	width: 0em;
-	height: 0em;
+	width: window.innerWidth;
+	height: window.innerHeight;
 	border:solid black 1px;
 	margin-left: 5em;
 	background-repeat: no-repeat;
-	background-size: 35em 50em ;
+	background-size: 100% ;
 	
 	
 	}
@@ -28,7 +31,7 @@ width: 35em;
 	}
 	@keyframes example {
 	from {width: 0em; height: 0em;}
-    to {width: 35em; height:50em;}	
+    to {width: 35em; height:100em;}	
 	}
 	
 	#container{
@@ -101,10 +104,13 @@ function startup() {
   el.addEventListener("touchend", handleEnd, false);
   console.log("initialized.");
   var myCanvas = document.getElementById('myCanvas');
-	myCanvas.style.animationName = "example";
-	myCanvas.style.animationDuration = ".5s";
-	myCanvas.style.animationIterationCount = "1";
-	myCanvas.style.animationFillMode = "forwards";
+	//myCanvas.style.animationName = "example";
+	//myCanvas.style.animationDuration = ".5s";
+	//myCanvas.style.animationIterationCount = "1";
+	//myCanvas.style.animationFillMode = "forwards";
+	myCanvas.width = window.innerWidth;
+	myCanvas.height = window.innerHeight;
+	myCanvas.backgroundSize = 'window.innerWidth window.innerHeight';
 }
 var startImage;
 var pauseImage;
@@ -124,8 +130,8 @@ var horn = new Audio('horn.wav');
 var muted = false;
 var isPaused =false;
 
-document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
+//document.addEventListener("keydown", keyDownHandler, false);
+//document.addEventListener("keyup", keyUpHandler, false);
 
 function getBackground(){
     var city = document.getElementById('weatherSelectBox').value;
