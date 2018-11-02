@@ -34,17 +34,19 @@ width: 27.5em;
 	#container{
 		display: flex;
 	    justify-content: center;
+		flex-direction: column;  
 		}
+	
 	button{
 	margin: 1em;
-	width: 4em;
-	height: 3em;
+	width: 2em;
+	height: 1.5em;
 	}
 	
 	img{
 	margin: .25em;
-	width: 4em;
-	height: 3em;
+	width: 2em;
+	height: 1.5em;
 	}
 	#start-button{
 	width: 4em;
@@ -67,8 +69,10 @@ width: 27.5em;
 <h1>
 Video, Audio, Canvas
 </h1>
-<canvas onkeypress="(event)"id = "myCanvas"></canvas>
-<image id = "start-button" src ="button-start-game.png" onclick = "startPreGame()">
+<canvas onkeypress="(event)"id = "myCanvas">
+</canvas>
+<img id = "start-button" src ="button-start-game.png" onclick = "startPreGame()">
+<img onclick = "pause()" src ="pause.png"> 
 <img id = "mute/volume" onclick = "muteMusic()" src = "volume.png" width ="5em" height ="100px"></img>
 <div id="weatherDIV" style = "margin :1em" ></div>
 <p>Where would you like to play?<p>
@@ -88,7 +92,6 @@ Video, Audio, Canvas
   <option value ="porto%20alegre,br">Porto Alegre</option>
   <option value ="port-au-prince,ht">Port-au-Prince</option>
 </select>
-<button onclick = "pause()" type = "button"> Pause </button>
 </div>
 </body>
 <script>
@@ -103,7 +106,9 @@ function startup() {
 	myCanvas.style.animationIterationCount = "1";
 	myCanvas.style.animationFillMode = "forwards";
 }
-
+var startImage;
+var pauseImage;
+var muteImage
 var frameCount = 0;
 var pipes =[];
 var timer;
@@ -206,6 +211,15 @@ function handleStart(e) {
         bird.isUp = false;
        }
 
+ function muteImage(){
+ this.show =  function(){
+   this.button = new Image();
+   this.button.src = "pause.png";
+ }
+  this.update = function (){
+  ctx.drawImage(this.button, 64, 120, 10, 10);
+  }
+ }	   
 function draw(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   frameCount ++;
@@ -262,6 +276,7 @@ bird.score++;
 
 function startGame() {
 getBackground();
+    muteImage = new muteImage();
     bird = new Bird();
 	bird.show();
 	timer = setInterval (draw, 10);
@@ -294,7 +309,7 @@ function muteMusic(){
 
 
 function Pipe(){
-  this.speed = 7;
+  this.speed = 3;
   this.height = document.getElementById("myCanvas").height;
   this.top = Math.floor((Math.random() * height/3) - 60);
   this.bottom = Math.floor((Math.random() * height/3) + 90);
