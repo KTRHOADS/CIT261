@@ -30,7 +30,7 @@ html, body{
 	}
 	@keyframes example {
 	from {width: 0em; height: 0em;}
-    to {width: 35em; height:100em;}	
+    to {width: 21em; height:27em;}	
 	}
 	
 	#container{
@@ -78,7 +78,7 @@ Flappy Bird Weather
 <img id = "mute/volume" onclick = "muteMusic()" src = "volume.png" width ="5em" height ="100px"></img>
 <div id="weatherDIV" style = "margin :1em" ></div>
 <p>Where would you like to play?<p>
-<select width = "10px" height =".25em" id= "weatherSelectBox">
+<select width = "10px" height =".25em" id= "weatherSelectBox" onClick = 'getBackground()'>
   <option value="london,uk">London</option>
   <option value="New%20York,us">New York</option>
   <option value="Sao%20Paulo,br">Sao Paulo</option>
@@ -97,17 +97,7 @@ Flappy Bird Weather
 </div>
 </body>
 <script>
-function startup() {
-  var el = document.getElementById("myCanvas");
-  el.addEventListener("touchstart", handleStart, false);
-  el.addEventListener("touchend", handleEnd, false);
-  console.log("initialized.");
-  var myCanvas = document.getElementById('myCanvas');
-	//myCanvas.style.animationName = "example";
-	//myCanvas.style.animationDuration = ".5s";
-	//myCanvas.style.animationIterationCount = "1";
-	//myCanvas.style.animationFillMode = "forwards";
-    }
+
 var startImage;
 var pauseImage;
 var muteImage
@@ -119,14 +109,26 @@ var audio = new Audio('Zeca Pagodinho - Faixa Amarela.mp3');
 var bird;
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-const height = canvas.height;
-const width = canvas.width;
+let height = canvas.height;
+let width = canvas.width;
 var flap = new Audio('flap.mp3');
 var horn = new Audio('horn.wav');
 var muted = false;
 var isPaused =false;
 //document.addEventListener("keydown", keyDownHandler, false);
 //document.addEventListener("keyup", keyUpHandler, false);
+
+function startup() {
+  var el = document.getElementById("myCanvas");
+  el.addEventListener("touchstart", handleStart, false);
+  el.addEventListener("touchend", handleEnd, false);
+  console.log("initialized.");
+  var myCanvas = document.getElementById('myCanvas');
+	//myCanvas.style.animationName = "example";
+	//myCanvas.style.animationDuration = ".5s";
+	//myCanvas.style.animationIterationCount = "1";
+	//myCanvas.style.animationFillMode = "forwards";
+    }
 function getBackground(){
     var city = document.getElementById('weatherSelectBox').value;
     var requestURLFranklin = 'https://openweathermap.org/data/2.5/weather?q=' + city +'&units=imperial&appid=b6907d289e10d714a6e88b30761fae22';
@@ -343,8 +345,8 @@ this.isUp = false;
 this.score = 0;
 this.lives = 2;
 this.height = 20;
-this.width = 30;
-this.flapState =0;
+  this.width = 30;
+  this.flapState =0;
     this.gravity = 1;
     this.velocity = 0;
 	this.x = 64;

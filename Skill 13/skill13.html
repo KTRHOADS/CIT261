@@ -2,14 +2,26 @@
 <html>
 <head>
 <script>
+let spedAudio = new Audio();
+spedAudio.src = 'Tool Fast.mp3';
+
+let audio = new Audio();
+audio.src = 'Tool Normal.mp3'
+  
   function normalWalk(){
+   document.getElementById('canvas').style.animationName = 'reset';
+   document.getElementById('canvas').style.animationDuration = '.1s';
     document.getElementById('canvas').style.animationName = 'example';
-	document.getElementById('canvas').style.animationDuration = '1.25s';
+	document.getElementById('canvas').style.animationDuration = '1.667s';
+	audio.play();
   }
   
    function superWalk(){
-    document.getElementById('canvas').style.animationName = 'example';
-	document.getElementById('canvas').style.animationDuration = '.1s';
+    document.getElementById('canvas').style.animationName = 'reset';
+	 document.getElementById('canvas').style.animationDuration = '0s';
+    document.getElementById('canvas').style.animationName = 'fast';
+	document.getElementById('canvas').style.animationDuration = '.2s';
+	spedAudio.play();
   }
 </script>
 <style>
@@ -17,7 +29,7 @@ canvas {
      height: 256px;
   width: 256px;
   background-image: url('walking.png');
-  animation-iteration-count: infinite;
+  animation-iteration-count: 3;
   }
 @keyframes example {
     0%   {background-position : 0px 0px;}
@@ -27,6 +39,22 @@ canvas {
 	100% {background-position: -1024px 0px;}
 }
 
+@keyframes fast {
+    0%   {background-position : 0px 0px;}
+    25%  {background-position :-256px 0px;}
+    50%  {background-position:-512px 0px ;}
+    75% {background-position: -768px 0px;}
+	100% {background-position: -1024px 0px;}
+}
+
+@keyFrames reset{
+0%   {background-position : 0px 0px;}
+100%   {background-position : 0px 0px;}
+}
+
+video{
+  margin:2em;
+}
 </style>
 </head>
 <body>
@@ -34,6 +62,7 @@ canvas {
 <canvas id = "canvas"></canvas>
 <button type = 'button' onclick ="normalWalk()">Normal Walk</button>
 <button type = 'button' onclick ="superWalk()">Super Walk</button>
+<video src= "JSON.mp4" type="video/mp4" width = "500" height = "300" controls></video>
 </body>
 
 </html>
