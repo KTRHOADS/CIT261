@@ -15,6 +15,7 @@ html, body{
 	height: 27em;
 	border:solid black 1px;
 	margin-left: 0em;
+	margin-top: 4em;
 	background-repeat: no-repeat;
 	background-size:  21em 27em ;
 	
@@ -23,7 +24,7 @@ html, body{
 	@keyframes moveButton{
 	from {
 	position: absolute;
-	top :1em;}
+	top :3em;}
 	to {
 	position: absolute;
 	bottom :.25em;}
@@ -46,22 +47,24 @@ html, body{
 	}
 	
 	img{
-	margin: .25em;
+	margin: 1em;
 	width: 2em;
 	height: 1.5em;
 	}
+	
 	#start-button{
 	width: 4em;
 	height: 3em;
-	margin-right: 3em;
+	margin-top: 3em;
+	margin-bottom: 4em;
 	position: absolute;
 	top :1em; 
 	}
 	
-	#weatherSelectBox{
-	  width: 5em;
+	.selectBox{
+	  width: 10em;
 	  height: 2em;
-	  margin: 1em;
+	  margin: .5em;
 	}
 </style>
 
@@ -78,7 +81,7 @@ Flappy Bird Weather
 <img id = "mute/volume" onclick = "muteMusic()" src = "volume.png" width ="5em" height ="100px"></img>
 <div id="weatherDIV" style = "margin :1em" ></div>
 <p>Where would you like to play?<p>
-<select width = "10px" height =".25em" id= "weatherSelectBox" onClick = 'getBackground()'>
+<select width = "10px" height =".25em" class = "selectBox" id= "citySelectBox" onclick = 'getBackground()'>
   <option value="london,uk">London</option>
   <option value="New%20York,us">New York</option>
   <option value="Sao%20Paulo,br">Sao Paulo</option>
@@ -93,10 +96,30 @@ Flappy Bird Weather
   <option value ="miami,us">Miami</option>
   <option value ="porto%20alegre,br">Porto Alegre</option>
   <option value ="port-au-prince,ht">Port-au-Prince</option>
+  <option value ="springfield,us">Springfield</option>
+  <option value ="ogden,us">Ogden</option>
+  <option value ="bentonville,us">Bentonville</option>
+</select>
+<p>In which conditions would you like to play?<p>
+<select width = "10px" height =".25em" class = "selectBox" id= "weatherSelectBox" onclick = 'chooseWeather()'>
+  <option value= 800>Sunny</option>
+  <option value = 803>Cloudy</option>
+  <option value= 313>Light Rain</option>
+  <option value = 504 >Heavy Rain</option>
+  <option value= 211>Lightning</option>
+  <option value = 600>Snow</option>
+  <option value= 741>Foggy</option>
+  <option value =781>Tornado</option>
+  <option value = 762>Volcanic Ash</option>
+  <option value = 751>Sand Storm</option>
+  
+  
 </select>
 </div>
+<button onclick = 'startMusic()'>Start Music </button>
 </body>
 <script>
+
 
 var startImage;
 var pauseImage;
@@ -105,10 +128,10 @@ var frameCount = 0;
 var pipes =[];
 var timer;
 var gameOverAudio = new Audio('gameOver.wav');
-var audio = new Audio('Zeca Pagodinho - Faixa Amarela.mp3');
+let audio = new Audio();
 var bird;
 var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
+let ctx = canvas.getContext("2d");
 let height = canvas.height;
 let width = canvas.width;
 var flap = new Audio('flap.mp3');
@@ -122,20 +145,21 @@ function startup() {
   var el = document.getElementById("myCanvas");
   el.addEventListener("touchstart", handleStart, false);
   el.addEventListener("touchend", handleEnd, false);
-  console.log("initialized.");
+  
   var myCanvas = document.getElementById('myCanvas');
-	//myCanvas.style.animationName = "example";
-	//myCanvas.style.animationDuration = ".5s";
-	//myCanvas.style.animationIterationCount = "1";
-	//myCanvas.style.animationFillMode = "forwards";
+	myCanvas.style.animationName = "example";
+	myCanvas.style.animationDuration = ".5s";
+	myCanvas.style.animationIterationCount = "1";
+	myCanvas.style.animationFillMode = "forwards";
+	getBackground();
     }
 function getBackground(){
-    var city = document.getElementById('weatherSelectBox').value;
+    var city = document.getElementById('citySelectBox').value;
     var requestURLFranklin = 'https://openweathermap.org/data/2.5/weather?q=' + city +'&units=imperial&appid=b6907d289e10d714a6e88b30761fae22';
     var requestFranklin = new XMLHttpRequest();
     requestFranklin.open('GET', requestURLFranklin,'jsonp');
     requestFranklin.responseType = 'json';
-	console.log(city);
+
     
 	
 	requestFranklin.onload = function() {
@@ -154,31 +178,47 @@ requestFranklin.send();
 	var wind = Fobj.wind;
 	var weather= Fobj.weather[0];
 	var id = weather.id;
+	
 	document.getElementById('weatherDIV').innerHTML = 'The weather in ' + Fobj.name + ' is :' + '<br>' + weather.description;
-	console.log(id);
+    checkWeather(id);
+	}	
+	}
+	
+	function checkWeather(id){
 	if (id == 800){
 	  canvas.style.backgroundImage = "url('blue-sky.jpg')";
+	  ctx.fillStyle = 'green';
+	  audio.src = 'sunny.mp3';
 	}
 	if (id > 800 ){
 	  canvas.style.backgroundImage = "url('cloudy.jpeg')";
+	  audio.src = 'clouds.mp3';
 	  }
 	if (id >=200 && id < 300){
 	  canvas.style.backgroundImage = "url('lightning.jpg')";
+	  audio.src = "lightning.mp3";
+	  ctx.fillStyle = 'black';
+	  
 	}
 	
 	if (id >=300 && id <= 501){
 	  canvas.style.backgroundImage = "url('light-rain.jpg')";
+	  ctx.fillStyle = 'orange';
+	  audio.src = 'light rain.mp3';
 	}
 	if (id >=502 && id <= 531){
 	  canvas.style.backgroundImage = "url('heavy-rain.jpg')";
+	  audio.src = "rain.mp3";
 	}
 	if (id >=600 && id <= 631){
 	  canvas.style.backgroundImage = "url('snow.jpg')";
+	  audio.src = 'snow.mp3';
 	}
+	
 	if (id == 701 || id == 721 || id== 741 ){
 	  canvas.style.backgroundImage = "url('foggy.jpg')";
-	  var ctx = canvas.getContext("2d");
 	  ctx.fillStyle = 'blue';
+	  audio.src = 'fog.mp3';
 	}
 	if (id == 711){
 	  canvas.style.backgroundImage = "url('smoke.jpg')";
@@ -188,15 +228,24 @@ requestFranklin.send();
 	}
 	if (id ==762){
 	  canvas.style.backgroundImage = "url('volcano.jpg')";
+	  audio.src = 'volcano.mp3';
 	}
 	if (id ==781){
 	  canvas.style.backgroundImage = "url('tornado.jpg')";
+	  audio.src = 'tornado.mp3';
 	}
 	if (id ==761 || id== 751){
 	  canvas.style.backgroundImage = "url('sandstorm.jpg')";
+	  audio.src = 'sandstorm.mp3';
 	}
 }
+
+
+function chooseWeather() {
+var id = document.getElementById('weatherSelectBox').value; 
+ checkWeather(id);
 }
+
 function handleStart(e) {
     e.preventDefault();
     bird.isUp = true;
@@ -207,15 +256,7 @@ function handleStart(e) {
         e.preventDefault();
         bird.isUp = false;
        }
- function muteImage(){
- this.show =  function(){
-   this.button = new Image();
-   this.button.src = "pause.png";
- }
-  this.update = function (){
-  ctx.drawImage(this.button, 64, 120, 10, 10);
-  }
- }	   
+ 
 function draw(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   frameCount ++;
@@ -260,18 +301,14 @@ bird.score++;
   
  
  function startPreGame(){
- var input = document.createElement('input');
- var button = document.createElement('button');
- button.type = 'button';
+ startMusic();
  startGame();
+ 
  }
 function startGame() {
-getBackground();
-    muteImage = new muteImage();
     bird = new Bird();
 	bird.show();
 	timer = setInterval (draw, 10);
-	startMusic();
 	ctx.fillColor = "black";
 	bird.gravity= .5;
 	var buttonStyle = document.getElementById('start-button').style;
@@ -283,8 +320,9 @@ getBackground();
 }
 function startMusic(){
 audio.volume = 0.2;
-audio.currentTime = 14;
+audio.currentTime = 0;
 	audio.play();
+	console.log(audio.src)
 	}
 function muteMusic(){
   if (!muted){
