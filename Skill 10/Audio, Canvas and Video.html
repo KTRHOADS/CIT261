@@ -81,7 +81,7 @@ Flappy Bird Weather
 <img id = "mute/volume" onclick = "muteMusic()" src = "volume.png" width ="5em" height ="100px"></img>
 <div id="weatherDIV" style = "margin :1em" ></div>
 <p>Where would you like to play?<p>
-<select width = "10px" height =".25em" class = "selectBox" id= "citySelectBox" onclick = 'getBackground()'>
+<select width = "10px" height =".25em" class = "selectBox" id= "citySelectBox" oninput = 'getBackground()'>
   <option value="london,uk">London</option>
   <option value="New%20York,us">New York</option>
   <option value="Sao%20Paulo,br">Sao Paulo</option>
@@ -101,7 +101,7 @@ Flappy Bird Weather
   <option value ="bentonville,us">Bentonville</option>
 </select>
 <p>In which conditions would you like to play?<p>
-<select width = "10px" height =".25em" class = "selectBox" id= "weatherSelectBox" onclick = 'chooseWeather()'>
+<select width = "10px" height =".25em" class = "selectBox" id= "weatherSelectBox" oninput = 'chooseWeather()'>
   <option value= 800>Sunny</option>
   <option value = 803>Cloudy</option>
   <option value= 313>Light Rain</option>
