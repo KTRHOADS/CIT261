@@ -122,10 +122,12 @@ Flappy Bird Weather
 </select>
 </div>
 <button width = "5em" onclick = 'startMusic()'>Sample Music </button>
+<button width = "5em" onclick = 'playVideo()'>Play Video </button>
+<button width = "5em" onclick = 'stopVideo()'>Stop Video </button>
 </body>
 <script>
 
-
+let videoIsPlaying = false;
 var startImage;
 var pauseImage;
 var muteImage
@@ -316,13 +318,9 @@ document.getElementById('myCanvas').style.animationDuration = '.3s';
 	bird.show();
 	timer = setInterval (draw, 10);
 	ctx.fillColor = "black";
-	bird.gravity= .5;
-	var buttonStyle = document.getElementById('start-button').style;
+	bird.gravity= 1;
 	document.getElementById('myCanvas').style.animationName = "example";
-	buttonStyle.animationName = "moveButton";
-	buttonStyle.animationDuration = ".5s";
-	buttonStyle.animationIterationCount = "1";
-	buttonStyle.animationFillMode = "forwards";
+	
 	
 }
 function startMusic(){
@@ -471,6 +469,29 @@ this.gravity = - 1;
 	}
 	
 }
+
+function playVideo(){
+if (!document.getElementById('video')){
+  var video = document.createElement('video');
+  video.src = "video.mp4";
+  video.style.width = '27em';
+  video.style.height ='21em';
+  video.animationDuration = "1s";
+	video.animationIterationCount = "1";
+	video.animationFillMode = "forwards";
+  document.body.appendChild(video);
+  video.style.animationName = 'example';
+  video.id ="video";
+  video.play();
+  videoIsPlaying = true;
+}
+}
+function stopVideo(){
+  if (videoIsPlaying){
+  document.getElementById('video').pause();
+  }
+}
+
 function Player(){
   this.score = score;
   this.name = name;
