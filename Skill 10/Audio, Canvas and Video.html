@@ -81,7 +81,7 @@ Flappy Bird Weather
 </h3>
 <canvas onkeypress="(event)"id = "myCanvas">
 </canvas>
-<div id = "highScoreDiv"><div/>
+<div id = "highScoreDiv"></div>
 <img id = "start-button" src ="button-start-game.png" onclick = "startPreGame()">
 <img onclick = "pause()" src ="pause.png"> 
 <img id = "mute/volume" onclick = "muteMusic()" src = "volume.png" width ="5em" height ="100px"></img>
@@ -158,6 +158,7 @@ function startup() {
 	myCanvas.style.animationIterationCount = "1";
 	myCanvas.style.animationFillMode = "forwards";
 	getBackground();
+	getHighScore();
     }
 function getBackground(){
     var city = document.getElementById('citySelectBox').value;
@@ -412,6 +413,7 @@ ctx.fillStyle = 'red';
 ctx.fillText("Game Over!", 80,75 );
 audio.pause();
 gameOverAudio.play();
+saveHighScore();
 delete Bird();
 document.getElementById('myCanvas').style.animationName = 'gameOver';
 document.getElementById('myCanvas').style.animationDuration = '5s';
@@ -502,6 +504,31 @@ function Player(){
 	
   }  
 }
+function saveHighScore(){
+currentScore = bird.score;
+if (storageAvailable('localStorage') && getHighScore() < currentScore ){
+ window['localStorage'].setItem('highScore', currentScore);
+ getHighScore();
+}
+}
+
+function storageAvailable(type) {
+     
+        var storage = window[type],
+            x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+	
+function	getHighScore(){
+	var highScore = window['localStorage'].getItem('highScore');
+	if (highScore == null){
+	highScore = 0;
+	}
+	document.getElementById('highScoreDiv').innerHTML = 'Your High Score is: ' + highScore;
+	return highScore;
+	}
 </script>
 
 </html>
