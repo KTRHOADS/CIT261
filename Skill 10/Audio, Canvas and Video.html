@@ -11,8 +11,8 @@ html, body{
 }
 	canvas{
 	background-image: url("blue-sky.jpg");
-	width: 21em;
-	height: 27em;
+	width: 0em;
+	height: 0em;
 	border:solid black 1px;
 	margin-left: 0em;
 	margin-top: 4em;
@@ -41,9 +41,9 @@ html, body{
 		}
 	
 	button{
-	margin: 1em;
-	width: 2em;
-	height: 1.5em;
+	margin: .5em;
+	width: 4em;
+	height: 3em;
 	}
 	
 	img{
@@ -66,6 +66,11 @@ html, body{
 	  height: 2em;
 	  margin: .5em;
 	}
+	
+	@keyframes gameOver { 
+	from {width:21em; height:27em;}
+    to {width: 0em; height: 0em;}	
+	}
 </style>
 
 
@@ -76,6 +81,7 @@ Flappy Bird Weather
 </h3>
 <canvas onkeypress="(event)"id = "myCanvas">
 </canvas>
+<div id = "highScoreDiv"><div/>
 <img id = "start-button" src ="button-start-game.png" onclick = "startPreGame()">
 <img onclick = "pause()" src ="pause.png"> 
 <img id = "mute/volume" onclick = "muteMusic()" src = "volume.png" width ="5em" height ="100px"></img>
@@ -112,11 +118,10 @@ Flappy Bird Weather
   <option value =781>Tornado</option>
   <option value = 762>Volcanic Ash</option>
   <option value = 751>Sand Storm</option>
-  
-  
+  <option value = 711>Smoke</option>
 </select>
 </div>
-<button onclick = 'startMusic()'>Start Music </button>
+<button width = "5em" onclick = 'startMusic()'>Sample Music </button>
 </body>
 <script>
 
@@ -146,9 +151,7 @@ function startup() {
   var el = document.getElementById("myCanvas");
   el.addEventListener("touchstart", handleStart, false);
   el.addEventListener("touchend", handleEnd, false);
-  
-  var myCanvas = document.getElementById('myCanvas');
-	myCanvas.style.animationName = "example";
+    var myCanvas = document.getElementById('myCanvas');
 	myCanvas.style.animationDuration = ".5s";
 	myCanvas.style.animationIterationCount = "1";
 	myCanvas.style.animationFillMode = "forwards";
@@ -223,6 +226,7 @@ requestFranklin.send();
 	}
 	if (id == 711){
 	  canvas.style.backgroundImage = "url('smoke.jpg')";
+	  audio.src =('smoke.mp3');
 	}
 	if (id ==771){
 	  canvas.style.backgroundImage = "url('squall.jpg')";
@@ -307,12 +311,14 @@ bird.score++;
  
  }
 function startGame() {
+document.getElementById('myCanvas').style.animationDuration = '.3s';
     bird = new Bird();
 	bird.show();
 	timer = setInterval (draw, 10);
 	ctx.fillColor = "black";
 	bird.gravity= .5;
 	var buttonStyle = document.getElementById('start-button').style;
+	document.getElementById('myCanvas').style.animationName = "example";
 	buttonStyle.animationName = "moveButton";
 	buttonStyle.animationDuration = ".5s";
 	buttonStyle.animationIterationCount = "1";
@@ -409,6 +415,8 @@ ctx.fillText("Game Over!", 80,75 );
 audio.pause();
 gameOverAudio.play();
 delete Bird();
+document.getElementById('myCanvas').style.animationName = 'gameOver';
+document.getElementById('myCanvas').style.animationDuration = '5s';
 }
 this.falling = function(){
 this.gravity = .5;
