@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+	<head>
+	</head>
+	<body>
+		<div id = 'div'>
+		</div>
+		<button class = 'button' onclick = "rotate()">Rotate</button>
+		<button class = 'button' onclick = "translateX()">translate X</button>
+		<button class = 'button' onclick = "translateY()">translate Y</button>
+		<button class = 'button' onclick = "translateXY()">translate X & Y</button>
+		<button class = 'button' onclick = "downScale()">Scale Down</button>
+		<button class = 'button' onclick = "upScale()">Scale Up</button>
+	<style>
+	button{
+		margin:1em;
+		transition: 1s transform;
+	}
+	div{
+		margin: 1em;
+		width: 50px;
+		height: 50px;
+		background-color: green;
+		transition: 1s transform;
+	}
+	</style>
+	<script>
+		let div = document.getElementById('div');
+		
+		function rotate(){
+			div.style.transform  = "rotate(1.2rad)";
+			var buttons = document.getElementsByClassName('button');
+			
+			for (var i = 0; i < buttons.length; i++){
+				buttons[i].style.transform = 'rotate(1.2rad)';
+			} 
+		
+		}
+		
+		function translateX(){
+			div.style.transform  = 'translateX(300px)';
+			var buttons = document.getElementsByClassName('button');
+			
+			for (var i = 0; i < buttons.length; i++){
+				buttons[i].style.transform = 'translateX(300px)';
+			} 
+		}
+		
+		function translateY(){
+			div.style.transform  = 'translateY(300px)';
+			var buttons = document.getElementsByClassName('button');
+			
+			for (var i = 0; i < buttons.length; i++){
+				buttons[i].style.transform = 'translateY(300px)';
+			} 
+		
+		}
+		
+		function translateXY(){
+			div.style.transform  = 'translate(300px,300px)';
+			var buttons = document.getElementsByClassName('button');
+			
+			for (var i = 0; i < buttons.length; i++){
+				buttons[i].style.transform = 'translate(300px,300px)';
+			} 
+		}
+		
+		function upScale(){
+			div.style.transform  = 'scale(5) translate(20px,20px)';
+			var buttons = document.getElementsByClassName('button');
+			
+			for (var i = 0; i < buttons.length; i++){
+				buttons[i].style.transform = 'scale(5) translate(20px,20px)';
+			} 
+		}
+		
+		function downScale(){
+			div.style.transform  = 'scale(.5)';
+			var buttons = document.getElementsByClassName('button');
+			
+			for (var i = 0; i < buttons.length; i++){
+				buttons[i].style.transform = 'scale(.5)';
+			} 
+		}
+			
+		
+	</script>
+</html>

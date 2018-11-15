@@ -146,8 +146,7 @@ flap.volume =.5;
 var horn = new Audio('horn.wav');
 var muted = false;
 var isPaused =false;
-//document.addEventListener("keydown", keyDownHandler, false);
-//document.addEventListener("keyup", keyUpHandler, false);
+
 
 function startup() {
   var el = document.getElementById("myCanvas");
@@ -257,14 +256,13 @@ var id = document.getElementById('weatherSelectBox').value;
 function handleStart(e) {
     e.preventDefault();
     bird.isUp = true;
-    console.log("touchstart.");
 	}
 	
 	function handleEnd(e) {
         e.preventDefault();
         bird.isUp = false;
        }
- 
+
 function draw(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   frameCount ++;
