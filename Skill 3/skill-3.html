@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+ <head></head>
+ <body>
+	<div> 
+	<h3>Create a Person Object</h3><br> <br>
+	Name: <br><br>
+	<input id  ="name" type ="text"> <br><br>
+    Gender: <br><br>
+	<input id  ="gender" type ="text"><br><br>
+	<button onclick = "createObject()">Create JS Object</button>
+	<button onclick = "stringifyObject()">Stringify Object</button>
+	<button onclick = "parseObject()">Parse JSON String</button>
+	
+	</div>
+	<div id = "ObjectDiv"></div>
+ </body>
+ <script>
+	var person;
+	var stringified;
+	function stringifyObject(){
+		if (person != null){
+			stringified = JSON.stringify(person);
+			document.getElementById('ObjectDiv').innerHTML = stringified;
+		}
+	}
+	function createObject(){
+		 person = {gender:document.getElementById('gender').value, name: document.getElementById('name').value}
+		document.getElementById('ObjectDiv').innerHTML = "Name: " + person.name + "<br> Gender: " + person.gender;
+	}
+	
+	function parseObject(){
+	if(stringified != null){
+		var JSObject = JSON.parse(stringified);
+		document.getElementById('ObjectDiv').innerHTML = "Name: " + JSObject.name + "<br> Gender: " + JSObject.gender;;
+	}
+	}
+ </script>
+ </html>
