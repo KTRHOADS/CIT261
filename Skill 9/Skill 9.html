@@ -15,7 +15,7 @@
   let el = document.getElementById("myCanvas");
   var ctx=el.getContext("2d");
   counter++;
-  while (counter ==0){    
+  while (counter < 5){    
    el.style.background = "red";
 	ctx.clearRect(0,0, el.width, el.height);
 	ctx.font="20px Georgia";
@@ -54,6 +54,8 @@
 <body onload = "addTouch()">
 
 <canvas id = "myCanvas">
+
+<div id ="Div"></div> 
   
 </canvas>
 </body>
