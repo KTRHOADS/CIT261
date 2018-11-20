@@ -2,17 +2,20 @@
 <html>
 <head>
 <script>
-  let el = document.getElementById("myCanvas");
+  
   
   function addTouch(){
+  let el = document.getElementById("myCanvas");
     el.addEventListener("touchstart", handleStart, false);
     el.addEventListener("touchend", handleEnd, false);
   }
   function handleStart(){
+  let el = document.getElementById("myCanvas");
     el.style.background = "green";
   }
   
   function handleEnd(){
+  let el = document.getElementById("myCanvas");
     el.style.background = "red";
   }
 </script>
