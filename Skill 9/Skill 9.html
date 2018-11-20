@@ -2,7 +2,7 @@
 <html>
 <head>
 <script>
-  
+  var counter = 0;
   
   function addTouch(){
   let el = document.getElementById("myCanvas");
@@ -11,11 +11,11 @@
 	handleEnd();
   }
   function handleStart(){
-  var counter = 0;
+  
   let el = document.getElementById("myCanvas");
   var ctx=el.getContext("2d");
   counter++;
-  while (counter < 5){    
+  while (counter ==0){    
    el.style.background = "red";
 	ctx.clearRect(0,0, el.width, el.height);
 	ctx.font="20px Georgia";
