@@ -13,12 +13,16 @@
   function handleStart(){
   var counter = 0;
   let el = document.getElementById("myCanvas");
-    el.style.background = "red";
-	var ctx=el.getContext("2d");
+  var ctx=el.getContext("2d");
+
+  while (counter < 5){    
+   el.style.background = "red";
 	ctx.clearRect(0,0, el.width, el.height);
 	ctx.font="20px Georgia";
-    ctx.fillText("Stop Touching Me!", 10, 50)
+    ctx.fillText("Stop Touching Me! " + counter, 10, 50)
 	counter++;
+	}
+	 meltdown(ctx);
   }
   
   function handleEnd(){
@@ -29,6 +33,16 @@
 	ctx.font="20px Georgia";
 	ctx.fillText(" Touch Me!", 10, 50)
   }
+  
+  function meltdown(ctx){
+    ctx.clearRect(0,0, el.width, el.height);
+	ctx.font="50px Georgia";
+    ctx.fillText("I Told you to Stop Touching Me!", 10, 50)
+	setTimeout( ctx.clearRect(0,0, el.width, el.height);
+	ctx.backgroundImage = "angry.jpg", milliseconds)
+	
+  }
+   
 </script>
 <style>
 
