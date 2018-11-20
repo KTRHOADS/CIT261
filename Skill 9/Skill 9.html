@@ -15,6 +15,7 @@
   let el = document.getElementById("myCanvas");
   var ctx=el.getContext("2d");
   counter++;
+  document.getElementById('Div').innerHRTML = counter;
   while (counter < 5){    
    el.style.background = "red";
 	ctx.clearRect(0,0, el.width, el.height);
