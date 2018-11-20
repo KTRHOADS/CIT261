@@ -14,13 +14,12 @@
   var counter = 0;
   let el = document.getElementById("myCanvas");
   var ctx=el.getContext("2d");
-
+  counter++;
   while (counter < 5){    
    el.style.background = "red";
 	ctx.clearRect(0,0, el.width, el.height);
 	ctx.font="20px Georgia";
     ctx.fillText("Stop Touching Me! " + counter, 10, 50)
-	counter++;
 	}
 	 meltdown(ctx);
   }
