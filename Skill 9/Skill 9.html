@@ -38,11 +38,13 @@
     ctx.clearRect(0,0, el.width, el.height);
 	ctx.font="50px Georgia";
     ctx.fillText("I Told you to Stop Touching Me!", 10, 50)
-	setTimeout( ctx.clearRect(0,0, el.width, el.height);
-	ctx.backgroundImage = "angry.jpg", milliseconds)
+	setTimeout( changeBackground, 5000)
 	
   }
-   
+   changeBackground(){
+   ctx.clearRect(0,0, el.width, el.height);
+	ctx.backgroundImage = "angry.jpg"
+   }
 </script>
 <style>
 
