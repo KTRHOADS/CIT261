@@ -21,7 +21,7 @@
   let el = document.getElementById("myCanvas");
     el.style.background = "red";
 	var ctx=el.getContext("2d");
-
+    ctx.clearRect(0,0, el.width, el.height);
 	ctx.fillText("Stop Touching Me!", 10, 50)
   }
 </script>
