@@ -13,20 +13,19 @@ audio.src = 'Tool Normal.mp3'
    document.getElementById('canvas').style.animationDuration = '.1s';
     document.getElementById('canvas').style.animationName = 'example';
 	document.getElementById('canvas').style.animationDuration = '1.667s';
-	audio.play();
+	
   }
   
    function superWalk(){
     document.getElementById('canvas').style.animationName = 'reset';
-	 document.getElementById('canvas').style.animationDuration = '0s';
-    document.getElementById('canvas').style.animationName = 'fast';
+	document.getElementById('canvas').style.animationName = 'fast';
 	document.getElementById('canvas').style.animationDuration = '.2s';
-	spedAudio.play();
+	
   }
 </script>
 <style>
 canvas {
-     height: 256px;
+  height: 256px;
   width: 256px;
   background-image: url('walking.png');
   animation-iteration-count: 3;
@@ -52,9 +51,6 @@ canvas {
 100%   {background-position : 0px 0px;}
 }
 
-video{
-  margin:2em;
-}
 </style>
 </head>
 <body>
