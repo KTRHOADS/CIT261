@@ -8,15 +8,21 @@
   let el = document.getElementById("myCanvas");
     el.addEventListener("touchstart", handleStart, false);
     el.addEventListener("touchend", handleEnd, false);
+	handleStart();
   }
   function handleStart(){
   let el = document.getElementById("myCanvas");
     el.style.background = "green";
+	var ctx=el.getContext("2d");
+    ctx.fillText("Touch Me!", 10, 50)
   }
   
   function handleEnd(){
   let el = document.getElementById("myCanvas");
     el.style.background = "red";
+	var ctx=el.getContext("2d");
+
+	ctx.fillText("Stop Touching Me!", 10, 50)
   }
 </script>
 <style>
