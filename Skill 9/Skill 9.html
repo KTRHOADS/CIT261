@@ -11,12 +11,14 @@
 	handleEnd();
   }
   function handleStart(){
+  var counter = 0;
   let el = document.getElementById("myCanvas");
     el.style.background = "red";
 	var ctx=el.getContext("2d");
 	ctx.clearRect(0,0, el.width, el.height);
 	ctx.font="20px Georgia";
     ctx.fillText("Stop Touching Me!", 10, 50)
+	counter++;
   }
   
   function handleEnd(){
