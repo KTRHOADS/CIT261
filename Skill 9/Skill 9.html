@@ -33,24 +33,27 @@
   }
   
   function handleEnd(){
-  
-  let el = document.getElementById("myCanvas");
-    el.style.backgroundImage = "url(banner.jpg)";
-counter++;
-	var ctx=el.getContext("2d");
+    let el = document.getElementById("myCanvas");
+    var ctx=el.getContext("2d");
+	var audio = new Audio();
+	
+	audio.src = "smash.mp3";
+	el.style.backgroundImage = "url(banner.jpg)";
+    counter++;
+	
 	if(counter < 5){
     ctx.clearRect(0,0, el.width, el.height);
 	ctx.font="20px Georgia";
 	ctx.fillStyle = 'rgb(255,67,0,30)';
 	ctx.fillText("Please Don't Touch Me!", 10, 50);
 	}
+	
 	if (counter  >= 5){
 	  ctx.clearRect(0,0, el.width, el.height);
-	  
-	el.style.backgroundImage = "url('angry.jpg')";
-	el.style.animationName = 'hulkOut';
-	el.style.animationDuration = "2s";
-	
+	  el.style.backgroundImage = "url('angry.jpg')";
+	  el.style.animationName = 'hulkOut';
+	  el.style.animationDuration = "6s";
+	  audio.play();
 	}
 	
   }
