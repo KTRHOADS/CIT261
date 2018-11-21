@@ -14,48 +14,69 @@
   
   let el = document.getElementById("myCanvas");
   var ctx=el.getContext("2d");
-  document.getElementById('Div').innerHRTML = counter;
-    if (counter < 4){
-   el.style.background = "red";
+  
+  
+    if (counter < 4 ){
 	ctx.clearRect(0,0, el.width, el.height);
-	ctx.font="20px Georgia";
-    ctx.fillText("Stop Touching Me! " + counter, 10, 50)
+	ctx.font="30px Georgia";
+	ctx.fillStyle = 'red';
+    ctx.fillText("Stop Touching Me!", 10, 50)
+	el.style.backgroundImage  = "url('pushing.jpg')";
 	}
-	else  {meltdown(ctx);
-	
+	if (counter == 4) { 
+	ctx.clearRect(0,0, el.width, el.height);
+	ctx.fillStyle = "purple";
+	ctx.font = "50px Georgia";
+    ctx.fillText("I'm Getting Angry!!", 0, 250)	
+	el.style.backgroundImage  = "url(gettingAngry.jpg)";
 	}
   }
   
   function handleEnd(){
   
   let el = document.getElementById("myCanvas");
-    el.style.background = "green";
-	counter++;
+    el.style.backgroundImage = "url(banner.jpg)";
+counter++;
 	var ctx=el.getContext("2d");
-	if(count < 5){
+	if(counter < 5){
     ctx.clearRect(0,0, el.width, el.height);
 	ctx.font="20px Georgia";
-	ctx.fillText("Touch Me!", 10, 50)
+	ctx.fillStyle = 'rgb(255,67,0,30)';
+	ctx.fillText("Please Don't Touch Me!", 10, 50);
 	}
-	if (count > 4){
+	if (counter  >= 5){
 	  ctx.clearRect(0,0, el.width, el.height);
-	ctx.backgroundImage = "angry.jpg";
-	ctx.font="50px Georgia";
-    ctx.fillText("I Told you to Stop Touching Me!", 10, 50);
+	  
+	el.style.backgroundImage = "url('angry.jpg')";
+	el.style.animationName = 'hulkOut';
+	el.style.animationDuration = "2s";
+	
 	}
+	
   }
   
-  
+  function setFont(){
+  let el = document.getElementById("myCanvas");
+  var ctx=el.getContext("2d");
+   ctx.font="20px Georgia";
+    ctx.fillText("Stop Touching Me!", 20, 30);
+  }
 </script>
 <style>
-
-
+@keyframes hulkOut {
+    from {width: 00px; height: 00px;}
+    to {width: 980px; height:490px;}
+}
+canvas{
+background-repeat: no-repeat;
+  animation-fill-mode: forwards;
+}
 
 </style>
 </head>
 <body onload = "addTouch()">
 
-<canvas id = "myCanvas">
+<canvas width =500px height = 400px id = "myCanvas" onmousedown="handleStart()" onmouseup="handleEnd()" >
 
 <div id ="Div"></div> 
   
