@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 html, body{
     background-color:#FF1493; 
@@ -71,6 +72,11 @@ html, body{
 	from {width:21em; height:27em;}
     to {width: 0em; height: 0em;}	
 	}
+	
+	#highScoreDiv{
+	 font-size: 20pt;
+	 color: #ffee84;
+	}
 </style>
 
 
@@ -79,7 +85,7 @@ html, body{
 <h3>
 Flappy Bird Weather
 </h3>
-<canvas onkeypress="(event)"id = "myCanvas">
+<canvas onkeypress="(event)"id = "myCanvas" onmousedown = "handleStart()" onmouseup ="handleEnd()">
 </canvas>
 <div id = "highScoreDiv"></div>
 <img id = "start-button" src ="button-start-game.png" onclick = "startPreGame()">
@@ -124,7 +130,9 @@ Flappy Bird Weather
 <button width = "5em" onclick = 'startMusic()'>Sample Music </button>
 <button width = "5em" onclick = 'playVideo()'>Play Video </button>
 <button width = "5em" onclick = 'stopVideo()'>Stop Video </button>
+<button width = "7em" onclick = 'upside()'>Flip</button>
 </body>
+
 <script>
 
 let videoIsPlaying = false;
@@ -253,14 +261,12 @@ var id = document.getElementById('weatherSelectBox').value;
  checkWeather(id);
 }
 
-function handleStart(e) {
-    e.preventDefault();
-    bird.isUp = true;
+function handleStart() {
+      bird.isUp = true;
 	}
 	
-	function handleEnd(e) {
-        e.preventDefault();
-        bird.isUp = false;
+	function handleEnd() {
+         bird.isUp = false;
        }
 
 function draw(){
@@ -275,14 +281,14 @@ function draw(){
   if (isPaused){
     pipes[i].speed =0;
 	bird.gravity = 0;
-	bird.y = 0;
+	
   }
   else{
    pipes[i].show();
    pipes[i].update();
    if (pipes[i].hits(bird)){
 	 bird.loseLife();
-	 pipes.splice(i, 1);
+	 pipes[i].x = -this.w - 1;
     }
    if (pipes[i].offscreen()){
      pipes.splice(i, 1);
@@ -326,8 +332,7 @@ function startMusic(){
 audio.volume = 0.2;
 audio.currentTime = 0;
 	audio.play();
-	console.log(audio.src)
-	}
+		}
 function muteMusic(){
   if (!muted){
   muted = true;
@@ -362,13 +367,16 @@ function Pipe(){
   this.offscreen = function(){
     if (this.x < -this.w){
 	    return true;
+		
 	  }
+	  
     else return false;
 	} 
   this.hits =  function(bird){
     if (bird.y < this.top +  75   || bird.y > this.bottom - bird.height){
 	  if (bird.x > this.x && bird.x < this.x + this.w){
 	  return true;
+	  
 	  }
 	}
   }
@@ -405,13 +413,13 @@ this.height = 20;
 	 this.gameOver = function (){
 clearInterval(timer);
 ctx.font = "30px Times-New-Roman"; 
-this.gravity = 0;
-this.y = 0; 
+this.gravity = 0; 
 ctx.fillStyle = 'red';
 ctx.fillText("Game Over!", 80,75 );
 audio.pause();
 gameOverAudio.play();
 saveHighScore();
+
 delete Bird();
 document.getElementById('myCanvas').style.animationName = 'gameOver';
 document.getElementById('myCanvas').style.animationDuration = '5s';
@@ -447,7 +455,12 @@ this.gravity = - 1;
 		ctx.font = "12px Times-New-Roman";
 		ctx.fillColor = "red";
 		ctx.fillText("Score: " + this.score,10,15);
-		ctx.fillText("Lives:" + this.lives ,230,15);
+		if (this.lives > - 1 ){
+		  ctx.fillText("Lives: " + this.lives ,230,15)
+		  }
+		else {
+		  ctx.fillText("Lives:" + 0 ,230,15)
+		}  
 		if(bird.isUp){
 		this.moveUp();
 		flap.play();
@@ -519,14 +532,29 @@ function storageAvailable(type) {
         return true;
     }
 	
-function	getHighScore(){
+function getHighScore(){
 	var highScore = window['localStorage'].getItem('highScore');
 	if (highScore == null){
 	highScore = 0;
 	}
-	document.getElementById('highScoreDiv').innerHTML = 'Your High Score is: ' + highScore;
+	document.getElementById('highScoreDiv').innerHTML = 'High Score : ' + highScore;
 	return highScore;
 	}
+	let count = 0;
+function upside(){
+let canvas  = document.getElementById("myCanvas");
+count++;
+      if(!count % 1 === 0){
+	  
+	    canvas.style.transform = "rotate(180deg)";
+	  }
+else {
+    canvas.style.transform = "rotate(0deg)";
+}	
+  
+console.log(count % 1);
+	}	
+
 </script>
 
 </html>
