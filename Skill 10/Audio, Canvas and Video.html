@@ -492,9 +492,13 @@ if (!document.getElementById('video')){
   video.animationDuration = "1s";
 	video.animationIterationCount = "1";
 	video.animationFillMode = "forwards";
-  document.body.appendChild(video);
+	video.id ="video";
+	video.setAttribute("controls", "controls");
+	video.setAttribute("allowFullScreen", "allowFullScreen");
+	video.setAttribute("mozAllowFullScreen", "");
+	video.setAttribute("webkitAllowFullScreen", "");
+  document.body.appendChild(video); 
   video.style.animationName = 'example';
-  video.id ="video";
   video.play();
   videoIsPlaying = true;
 }
